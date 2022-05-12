@@ -8,13 +8,13 @@ import (
 	"testing"
 )
 
-func TestIssuesService_List_all(t *testing.T) {
+func TestTokensService_List_All(t *testing.T) {
 	client, mux, _, teardown := setup()
 	defer teardown()
 
 	mux.HandleFunc("/tokens", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "GET")
-		fmt.Fprint(w, `[{"name":"DePo"}]`)
+		fmt.Fprint(w, `{ "data":[ { "name":"DePo" } ], "error_code": 0 }`)
 	})
 
 	opt := &TokenListOptions{

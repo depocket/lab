@@ -17,7 +17,7 @@ import (
 
 const (
 	defaultBaseURL = "https://sdk.depocket.io/"
-	userAgent      = "go-depocket"
+	userAgent      = "DePocket-GoSDK"
 )
 
 var errNonNilContext = errors.New("context must be non-nil")
@@ -30,6 +30,7 @@ type Client struct {
 
 	common service
 	Tokens *TokenService
+	Pools  *PoolService
 
 	UserAgent string
 }
@@ -58,6 +59,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent}
 	c.common.client = c
 	c.Tokens = (*TokenService)(&c.common)
+	c.Pools = (*PoolService)(&c.common)
 	return c
 }
 
@@ -98,6 +100,11 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 
 type Response struct {
 	*http.Response
+}
+
+type ResponseBody struct {
+	Data      interface{} `json:"data"`
+	ErrorCode int         `json:"error_code"`
 }
 
 func newResponse(r *http.Response) *Response {
@@ -147,7 +154,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 	case io.Writer:
 		_, err = io.Copy(v, resp.Body)
 	default:
-		decErr := json.NewDecoder(resp.Body).Decode(v)
+		decErr := json.NewDecoder(resp.Body).Decode(&v)
 		if decErr == io.EOF {
 			decErr = nil // ignore EOF errors caused by empty response body
 		}

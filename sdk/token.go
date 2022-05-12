@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"context"
+	"fmt"
 )
 
 type TokenService service
@@ -14,6 +15,11 @@ type Token struct {
 	Type     string  `json:"type"`
 	Decimals int     `json:"decimals"`
 	Price    float64 `json:"price"`
+}
+
+type TokensResponse struct {
+	Data      []*Token `json:"data"`
+	ErrorCode int      `json:"error_code"`
 }
 
 func (i Token) String() string {
@@ -40,11 +46,14 @@ func (s *TokenService) listTokens(ctx context.Context, u string, opts *TokenList
 		return nil, nil, err
 	}
 
-	var issues []*Token
-	resp, err := s.client.Do(ctx, req, &issues)
+	var tokensResponse *TokensResponse
+	resp, err := s.client.Do(ctx, req, &tokensResponse)
 	if err != nil {
 		return nil, resp, err
 	}
+	if tokensResponse.ErrorCode != 0 {
+		return nil, resp, fmt.Errorf("error code %d", tokensResponse.ErrorCode)
+	}
 
-	return issues, resp, nil
+	return tokensResponse.Data, resp, nil
 }
