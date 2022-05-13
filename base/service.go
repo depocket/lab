@@ -1,7 +1,6 @@
 package base
 
 import (
-	"github.com/depocket/studio/sdk"
 	"math/big"
 )
 
@@ -55,9 +54,9 @@ type AppService interface {
 	SupportedNetworks() []string
 	Groups() []BalanceGroup
 
-	FetchBalances([]sdk.Token) ([]Balance, error)
-	FetchStakingBalance([]sdk.Token) (Balance, error)
-	FetchFarmingBalance([]sdk.Token) (Balance, error)
-	FetchLendingBalance([]sdk.Token) (Balance, error)
-	FetchBorrowBalance([]sdk.Token) (Balance, error)
+	FetchBalances() ([]Balance, error)
+	FetchStakingBalance() (Balance, error)
+	FetchFarmingBalance() (Balance, error)
+	FetchLendingBalance() (Balance, error)
+	FetchBorrowBalance() (Balance, error)
 }
