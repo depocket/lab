@@ -4,7 +4,7 @@
     <img src="images/logo.png" alt="Logo" height="80">
   </a>
 
-<h3 align="center">DePocket Studio</h3>
+<h3 align="center">DePocket Lab</h3>
 
   <p align="center">
     Platform that support the community to integrate their dApps to DePocket indexing engine
