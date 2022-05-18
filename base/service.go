@@ -1,6 +1,7 @@
 package base
 
 import (
+	"github.com/depocket/lab/sdk"
 	"math/big"
 )
 
@@ -54,6 +55,7 @@ type AppService interface {
 	SupportedNetworks() []string
 	Groups() []BalanceGroup
 
+	BeforeFetchData(client *sdk.Client) error
 	FetchBalances() ([]Balance, error)
 	FetchStakingBalance() (Balance, error)
 	FetchFarmingBalance() (Balance, error)

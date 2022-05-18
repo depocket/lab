@@ -11,5 +11,4 @@ var (
 
 func init() {
 	ServiceRegisters.RegisterService("ethereum_lido", lido.EthereumService{})
-	ServiceRegisters.RegisterService("bsc_lido", lido.BscService{})
 }
