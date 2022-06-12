@@ -1,9 +1,9 @@
 package constants
 
 var (
-	BinanceChain   = "bsc"
-	EthereumChain  = "ethereum"
-	SolanaChain    = "solana"
-	AvalancheChain = "avalanche"
-	MoonriverChain = "moonriver"
+	ChainBinance   = "bsc"
+	ChainEthereum  = "ethereum"
+	ChainSolana    = "solana"
+	ChainAvalanche = "avalanche"
+	ChainMoonriver = "moonriver"
 )

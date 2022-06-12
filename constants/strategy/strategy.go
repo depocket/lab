@@ -1,4 +1,4 @@
-package constants
+package strategy
 
 var (
 	MasterChef = "masterchef"

@@ -1,8 +1,8 @@
 package constants
 
 var (
-	Supply  = "supply"
-	Reward  = "reward"
-	Lending = "lending"
-	Borrow  = "borrow"
+	PositionSupply  = "supply"
+	PositionReward  = "reward"
+	PositionLending = "lending"
+	PositionBorrow  = "borrow"
 )
