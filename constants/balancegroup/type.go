@@ -7,4 +7,8 @@ var (
 		Type:  "staking",
 		Label: "Staking",
 	}
+	Vesting = base.BalanceGroup{
+		Type:  "vesting",
+		Label: "Vesting",
+	}
 )
