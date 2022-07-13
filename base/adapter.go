@@ -1,18 +1,20 @@
 package base
 
 import (
-	"github.com/depocket/go-client"
 	"math/big"
+	"time"
+
+	"github.com/depocket/go-client"
 )
 
 type ProjectBalance struct {
-	Chain     string        `json:"chain"`
-	Name      string        `json:"name"`
-	LogoUrl   string        `json:"logo_url"`
-	TagIds    []string      `json:"tags_id"`
-	Balances  []interface{} `json:"balances"`
-	UpdatedAt int64         `json:"updated_at,omitempty"`
-	Version   int           `json:"version"`
+	Chain     string    `json:"chain"`
+	Name      string    `json:"name"`
+	LogoUrl   string    `json:"logo_url"`
+	TagIds    []string  `json:"tags_id"`
+	Balances  []Balance `json:"balances"`
+	UpdatedAt int64     `json:"updated_at,omitempty"`
+	Version   int       `json:"version"`
 }
 
 type BalanceGroup struct {
@@ -27,22 +29,24 @@ type Balance struct {
 }
 
 type Pool struct {
-	Name         string         `json:"name"`
-	Apy          *big.Float     `json:"apy"`
-	RewardTokens []TokenBalance `json:"reward_tokens"`
-	SupplyTokens []TokenBalance `json:"supply_tokens"`
-	BorrowTokens []TokenBalance `json:"borrow_tokens"`
+	Name          string         `json:"name"`
+	Apy           *big.Float     `json:"apy"`
+	RewardTokens  []TokenBalance `json:"reward_tokens"`
+	SupplyTokens  []TokenBalance `json:"supply_tokens"`
+	BorrowTokens  []TokenBalance `json:"borrow_tokens"`
+	ClaimedTokens []TokenBalance `json:"claimed_tokens"`
+	UnlockAt      *time.Time     `json:"unlock_at"`
 }
 
 type TokenBalance struct {
-	Address  string    `json:"address"`
-	Balance  big.Float `json:"balance"`
-	Symbol   string    `json:"symbol"`
-	IconUrl  string    `json:"icon_url"`
-	Price    float64   `json:"price"`
-	Chain    string    `json:"chain"`
-	Decimals uint64    `json:"decimals"`
-	Name     string    `json:"name"`
+	Address  string     `json:"address"`
+	Balance  *big.Float `json:"balance"`
+	Symbol   string     `json:"symbol"`
+	IconUrl  string     `json:"icon_url"`
+	Price    float64    `json:"price"`
+	Chain    string     `json:"chain"`
+	Decimals int        `json:"decimals"`
+	Name     string     `json:"name"`
 }
 
 type Manifest struct {

@@ -1,3 +1,6 @@
 package tags
 
-const Staking = "staking"
+const (
+	Staking = "staking"
+	Vesting = "vesting"
+)
